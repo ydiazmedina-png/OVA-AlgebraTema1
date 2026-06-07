@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OVA: Espacios Vectoriales y Subespacios Vectoriales</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-slate-50">
+
+<div class="flex min-h-screen">
+
+    <!-- ══════════════════════════════════ -->
+    <!--  SIDEBAR ESCRITORIO               -->
+    <!-- ══════════════════════════════════ -->
+    <aside class="w-64 bg-white shadow-lg flex-shrink-0 hidden md:flex md:flex-col">
+        <div class="p-4">
+            <div style="width:150px;height:150px;"
+                 class="p-2 mx-auto flex items-center justify-center bg-white rounded-full shadow-lg border-2 border-green-500 hover:shadow-green-400 transition-shadow duration-300">
+                <img src="img/logo.webp" alt="Logo" class="w-5/6 h-5/6 object-contain" loading="lazy"
+                     onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'text-green-700 font-bold text-center text-xs p-2 block\'>Universidad de Córdoba</span>'">
+            </div>
+        </div>
+        <nav class="mt-6 flex-1">
+            <a href="#" class="sidebar-link active flex items-center py-3 px-6 font-medium text-slate-700" data-target="introduccion"><span class="mr-3 text-xl">🚀</span> Introducción</a>
+            <a href="#" class="sidebar-link flex items-center py-3 px-6 font-medium text-slate-700" data-target="objetivos"><span class="mr-3 text-xl">🎯</span> Objetivos</a>
+            <a href="#" class="sidebar-link flex items-center py-3 px-6 font-medium text-slate-700" data-target="contenido"><span class="mr-3 text-xl">📚</span> Contenido</a>
+            <a href="#" class="sidebar-link flex items-center py-3 px-6 font-medium text-slate-700" data-target="actividades"><span class="mr-3 text-xl">✍️</span> Actividades</a>
+            <a href="#" class="sidebar-link flex items-center py-3 px-6 font-medium text-slate-700" data-target="evaluacion"><span class="mr-3 text-xl">✔️</span> Evaluación</a>
+            <a href="#" class="sidebar-link flex items-center py-3 px-6 font-medium text-slate-700" data-target="recursos"><span class="mr-3 text-xl">📖</span> Recursos</a>
+            <a href="#" class="sidebar-link flex items-center py-3 px-6 font-medium text-slate-700" data-target="bibliografia"><span class="mr-3 text-xl">📚</span> Bibliografía</a>
+        </nav>
+    </aside>
+
+    <!-- ══════════════════════════════════ -->
+    <!--  CONTENIDO PRINCIPAL              -->
+    <!-- ══════════════════════════════════ -->
+    <main class="flex-1 p-4 sm:p-6 md:p-10 bg-gray-50">
+
+        <!-- Encabezado móvil -->
+        <div class="md:hidden mb-6 flex flex-col items-center">
+            <div style="width:100px;height:100px;"
+                 class="p-2 flex items-center justify-center bg-white rounded-full shadow-lg hover:shadow-green-400 transition-shadow duration-300 mb-2">
+                <img src="img/logo.webp" alt="Logo" class="w-5/6 h-5/6 object-contain" loading="lazy"
+                     onerror="this.style.display='none';this.parentElement.innerHTML='<span class=\'text-green-700 font-bold text-xs\'>UNICOR</span>'">
+            </div>
+            <select id="mobile-nav" class="w-full mt-2 p-2 border rounded-md bg-white shadow-sm">
+                <option value="introduccion">🚀 Introducción</option>
+                <option value="objetivos">🎯 Objetivos</option>
+                <option value="contenido">📚 Contenido</option>
+                <option value="actividades">✍️ Actividades</option>
+                <option value="evaluacion">✔️ Evaluación</option>
+                <option value="recursos">📖 Recursos</option>
+                <option value="bibliografia">📚 Bibliografía</option>
+            </select>
+        </div>
+
+        <!-- ════════════════════════════════════════════ -->
+        <!--  INTRODUCCIÓN                               -->
+        <!-- ════════════════════════════════════════════ -->
+        <div id="introduccion" class="content-pane active">
+            <h2 class="text-2xl sm:text-3xl font-bold text-green-800 mb-4">Espacios Vectoriales y Subespacios Vectoriales</h2>
+
+            <p class="text-slate-700 leading-relaxed mb-4">
+                En álgebra lineal, múltiples objetos matemáticos y computacionales pueden analizarse mediante estructuras vectoriales.
+                Una imagen digital, los parámetros de una red neuronal, o un polinomio de grado 3 — aunque son objetos muy distintos —
+                <strong>comparten propiedades algebraicas que permiten estudiarlos dentro de un marco común</strong>. 🤔
+            </p>
+            <p class="text-slate-700 leading-relaxed mb-4">
+                El concepto de <strong>espacio vectorial</strong> surge como una estructura matemática que generaliza el comportamiento
+                de los vectores y permite extender sus propiedades a otros conjuntos, siempre que estén definidas operaciones de suma
+                y multiplicación por escalares que cumplan determinados axiomas.
+            </p>
+
+            <div class="mt-6 p-4 sm:p-6 bg-green-50 border-l-4 border-green-500 rounded-r-lg">
+                <p class="text-green-800">
+                    ✨ <strong>Estos conceptos son la base de combinaciones lineales, independencia lineal, bases, dimensión, rango y transformaciones lineales — todo lo que viene en la Unidad 2. 🚀📐💻</strong>
+                </p>
+            </div>
+
+            <!-- Síntesis de voz -->
+            <div class="speech-controls mb-4 p-3 bg-green-100 rounded-lg flex items-center flex-wrap gap-2 mt-4" data-target="introduccion">
+                <button class="play-btn bg-green-600 hover:bg-green-700 text-white font-medium py-1 px-4 rounded-full flex items-center"><span class="mr-1">▶️</span> Leer</button>
+                <button class="pause-btn bg-yellow-500 hover:bg-yellow-600 text-white font-medium py-1 px-4 rounded-full flex items-center" disabled><span class="mr-1">⏸️</span> Pausar</button>
+                <button class="stop-btn bg-red-500 hover:bg-red-600 text-white font-medium py-1 px-4 rounded-full flex items-center" disabled><span class="mr-1">⏹️</span> Detener</button>
+                <div class="flex items-center ml-2">
+                    <label for="sr-intro" class="text-sm text-green-800 mr-2">Velocidad:</label>
+                    <input type="range" class="speech-rate" id="sr-intro" min="0.5" max="2" step="0.1" value="1">
+                </div>
+            </div>
+
+            <!-- Diagrama unificador SVG -->
+            <div class="mt-8 bg-white rounded-xl shadow-md p-4 border border-green-200">
+                <h3 class="text-lg font-bold text-green-700 mb-4 text-center">🗺️ El espacio vectorial como lenguaje unificador</h3>
+                <div class="overflow-x-auto">
+                    <svg viewBox="0 0 680 310" xmlns="http://www.w3.org/2000/svg" class="w-full max-w-2xl mx-auto block" style="min-width:300px">
+                        <defs>
+                            <marker id="arr" markerWidth="9" markerHeight="6" refX="9" refY="3" orient="auto">
+                                <polygon points="0 0,9 3,0 6" fill="#16a34a"/>
+                            </marker>
+                        </defs>
+                        <!-- Centro -->
+                        <ellipse cx="340" cy="155" rx="85" ry="50" fill="#dcfce7" stroke="#22c55e" stroke-width="2.5"/>
+                        <text x="340" y="148" text-anchor="middle" font-family="Poppins,sans-serif" font-size="13" font-weight="700" fill="#166534">Espacio</text>
+                        <text x="340" y="166" text-anchor="middle" font-family="Poppins,sans-serif" font-size="13" font-weight="700" fill="#166534">Vectorial V</text>
+                        <!-- Satélites -->
+                        <!-- ℝⁿ -->
+                        <rect x="20" y="20" width="110" height="42" rx="10" fill="#bfdbfe" stroke="#3b82f6" stroke-width="1.8"/>
+                        <text x="75" y="37" text-anchor="middle" font-family="Poppins,sans-serif" font-size="12" font-weight="600" fill="#1e40af">ℝⁿ</text>
+                        <text x="75" y="53" text-anchor="middle" font-family="Poppins,sans-serif" font-size="10" fill="#1e40af">Vectores numéricos</text>
+                        <line x1="130" y1="48" x2="258" y2="130" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arr)"/>
+                        <!-- Matrices -->
+                        <rect x="20" y="130" width="130" height="42" rx="10" fill="#fde68a" stroke="#d97706" stroke-width="1.8"/>
+                        <text x="85" y="147" text-anchor="middle" font-family="Poppins,sans-serif" font-size="12" font-weight="600" fill="#92400e">Mₘₓₙ(ℝ)</text>
+                        <text x="85" y="163" text-anchor="middle" font-family="Poppins,sans-serif" font-size="10" fill="#92400e">Matrices</text>
+                        <line x1="150" y1="151" x2="255" y2="155" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arr)"/>
+                        <!-- Polinomios -->
+                        <rect x="20" y="240" width="130" height="42" rx="10" fill="#d9f99d" stroke="#65a30d" stroke-width="1.8"/>
+                        <text x="85" y="257" text-anchor="middle" font-family="Poppins,sans-serif" font-size="12" font-weight="600" fill="#365314">Pₙ(ℝ)</text>
+                        <text x="85" y="273" text-anchor="middle" font-family="Poppins,sans-serif" font-size="10" fill="#365314">Polinomios</text>
+                        <line x1="150" y1="255" x2="255" y2="185" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arr)"/>
+                        <!-- Funciones -->
+                        <rect x="530" y="20" width="130" height="42" rx="10" fill="#fce7f3" stroke="#db2777" stroke-width="1.8"/>
+                        <text x="595" y="37" text-anchor="middle" font-family="Poppins,sans-serif" font-size="12" font-weight="600" fill="#9d174d">C[a,b]</text>
+                        <text x="595" y="53" text-anchor="middle" font-family="Poppins,sans-serif" font-size="10" fill="#9d174d">Funciones continuas</text>
+                        <line x1="530" y1="48" x2="422" y2="130" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arr)"/>
+                        <!-- Señales -->
+                        <rect x="540" y="130" width="120" height="42" rx="10" fill="#e0e7ff" stroke="#4f46e5" stroke-width="1.8"/>
+                        <text x="600" y="147" text-anchor="middle" font-family="Poppins,sans-serif" font-size="12" font-weight="600" fill="#312e81">Señales</text>
+                        <text x="600" y="163" text-anchor="middle" font-family="Poppins,sans-serif" font-size="10" fill="#312e81">Digitales/continuas</text>
+                        <line x1="540" y1="151" x2="425" y2="155" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arr)"/>
+                        <!-- Imágenes -->
+                        <rect x="530" y="240" width="130" height="42" rx="10" fill="#fee2e2" stroke="#dc2626" stroke-width="1.8"/>
+                        <text x="595" y="257" text-anchor="middle" font-family="Poppins,sans-serif" font-size="12" font-weight="600" fill="#7f1d1d">Imágenes</text>
+                        <text x="595" y="273" text-anchor="middle" font-family="Poppins,sans-serif" font-size="10" fill="#7f1d1d">Píxeles como vectores</text>
+                        <line x1="530" y1="255" x2="425" y2="185" stroke="#16a34a" stroke-width="1.5" marker-end="url(#arr)"/>
+                    </svg>
+                </div>
+                <p class="text-center text-sm text-slate-500 mt-2">Todos estos objetos son vectores en algún espacio vectorial</p>
+            </div>
+        </div>
+
+        <!-- ════════════════════════════════════════════ -->
+        <!--  OBJETIVOS                                  -->
+        <!-- ════════════════════════════════════════════ -->
+        <div id="objetivos" class="content-pane">
+            <h2 class="text-2xl sm:text-3xl font-bold text-green-800 mb-6">Objetivos de aprendizaje</h2>
+            <ul class="space-y-4">
+                <li class="flex items-start p-4 bg-white rounded-lg shadow-sm">
+                    <span class="text-green-700 mr-3 text-2xl">🧠</span>
+                    <span>Comprender la <strong>definición formal de espacio vectorial</strong>, su importancia y sus aplicaciones en ingeniería de sistemas.</span>
+                </li>
+                <li class="flex items-start p-4 bg-white rounded-lg shadow-sm">
+                    <span class="text-green-700 mr-3 text-2xl">🔍</span>
+                    <span>Identificar y verificar los <strong>diez axiomas</strong> que definen un espacio vectorial con ejemplos concretos.</span>
+                </li>
+                <li class="flex items-start p-4 bg-white rounded-lg shadow-sm">
+                    <span class="text-green-700 mr-3 text-2xl">📐</span>
+                    <span>Reconocer los espacios vectoriales más importantes: <strong>ℝⁿ, matrices, polinomios y funciones continuas</strong>.</span>
+                </li>
+                <li class="flex items-start p-4 bg-white rounded-lg shadow-sm">
+                    <span class="text-green-700 mr-3 text-2xl">🔢</span>
+                    <span>Definir y verificar <strong>subespacios vectoriales</strong> aplicando las tres condiciones necesarias y suficientes.</span>
+                </li>
+                <li class="flex items-start p-4 bg-white rounded-lg shadow-sm">
+                    <span class="text-green-700 mr-3 text-2xl">💻</span>
+                    <span>Relacionar los conceptos con <strong>problemas reales de la ingeniería de sistemas</strong>: machine learning, compresión, redes neuronales.</span>
+                </li>
+            </ul>
+            <!-- Voz -->
+            <div class="speech-controls mb-4 p-3 bg-green-100 rounded-lg flex items-center flex-wrap gap-2 mt-6" data-target="objetivos">
+                <button class="play-btn bg-green-600 hover:bg-green-700 text-white font-medium py-1 px-4 rounded-full flex items-center"><span class="mr-1">▶️</span> Leer</button>
+                <button class="pause-btn bg-yellow-500 hover:bg-yellow-600 text-white font-medium py-1 px-4 rounded-full flex items-center" disabled><span class="mr-1">⏸️</span> Pausar</button>
+                <button class="stop-btn bg-red-500 hover:bg-red-600 text-white font-medium py-1 px-4 rounded-full flex items-center" disabled><span class="mr-1">⏹️</span> Detener</button>
+                <div class="flex items-center ml-2">
+                    <label for="sr-obj" class="text-sm text-green-800 mr-2">Velocidad:</label>
+                    <input type="range" class="speech-rate" id="sr-obj" min="0.5" max="2" step="0.1" value="1">
+                </div>
+            </div>
+        </div>
+
+        <!-- ════════════════════════════════════════════ -->
+        <!--  CONTENIDO                                  -->
+        <!-- ════════════════════════════════════════════ -->
+        <div id="contenido" class="content-pane">
+            <h2 class="text-2xl sm:text-3xl font-bold text-green-800 mb-6">Desarrollo del Contenido</h2>
+            
+            <!-- Sistema de Pestañas Principales -->
+            <div class="w-full">
+                <!-- Pestañas de navegación -->
+                <div class="flex flex-wrap gap-2 mb-6 border-b-2 border-green-200 pb-2">
+                    <button class="tab-btn active px-6 py-3 rounded-lg font-bold text-white bg-green-600 transition-all duration-300 hover:bg-green-700 hover:shadow-lg transform hover:-translate-y-0.5" data-tab="espacio-vectorial">
+                        📦 Espacio Vectorial
+                    </button>
+                    <button class="tab-btn px-6 py-3 rounded-lg font-bold text-green-700 bg-green-100 transition-all duration-300 hover:bg-green-200 hover:shadow-lg transform hover:-translate-y-0.5" data-tab="subespacios">
+                        🧩 Subespacios
+                    </button>
+                </div>
+
+                <!-- Contenido de pestañas -->
+                <div class="tab-content">
+                    <!-- Pestaña: Espacio Vectorial -->
+                    <div id="espacio-vectorial" class="tab-pane active">
+                    <div class="space-y-8 text-slate-700 leading-relaxed">
+
+                        <!-- Definición -->
+                        <div class="bg-green-50 border-l-4 border-green-500 rounded-r-xl p-5 shadow">
+                            <p class="text-green-900 font-bold mb-2 text-lg">📖 Definición — Espacio Vectorial</p>
+                            <p>Un <strong>espacio vectorial sobre ℝ</strong> es un conjunto no vacío V, junto con dos operaciones:</p>
+                            <ul class="my-3 space-y-1 ml-4">
+                                <li>• <strong>Adición:</strong> +: V × V → V &nbsp; (a cada par (u,v) le asigna u+v ∈ V)</li>
+                                <li>• <strong>Multiplicación escalar:</strong> ·: ℝ × V → V &nbsp; (a cada par (c,v) le asigna c·v ∈ V)</li>
+                            </ul>
+                            <p>tales que se satisfacen los <strong>diez axiomas A1–A10</strong>. Los elementos de V se llaman <em>vectores</em> y los de ℝ se llaman <em>escalares</em>.</p>
+                        </div>
+
+                        <!-- Por qué importante -->
+                        <div>
+                            <h3 class="text-xl font-bold text-green-700 mb-4">💡 ¿Por qué es importante?</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div class="bg-blue-50 rounded-xl p-5 border-l-4 border-blue-500 shadow-sm">
+                                    <p class="font-bold text-blue-800 mb-2">🌐 Razón 1 — Lenguaje universal</p>
+                                    <p class="text-sm">Actúa como un "molde" matemático que <strong>unifica objetos distintos</strong>: vectores, matrices, polinomios, señales. Resultados válidos para todos simultáneamente.</p>
+                                </div>
+                                <div class="bg-purple-50 rounded-xl p-5 border-l-4 border-purple-500 shadow-sm">
+                                    <p class="font-bold text-purple-800 mb-2">🤖 Razón 2 — Fundamento de algoritmos</p>
+                                    <p class="text-sm">Redes neuronales, compresión JPEG, PCA — <strong>todo opera en espacios vectoriales</strong>. Sin este concepto, nada de eso sería posible.</p>
+                                </div>
+                                <div class="bg-orange-50 rounded-xl p-5 border-l-4 border-orange-500 shadow-sm">
+                                    <p class="font-bold text-orange-800 mb-2">🔢 Razón 3 — Simplifica problemas</p>
+                                    <p class="text-sm">Los 10 axiomas garantizan que podemos manipular vectores con las <strong>mismas reglas de la aritmética</strong>: conmutar, asociar, distribuir.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tabla aplicaciones IS -->
+                        <div>
+                            <h3 class="text-xl font-bold text-green-700 mb-3">💻 Aplicaciones en Ingeniería de Sistemas</h3>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-sm border-collapse">
+                                    <thead>
+                                        <tr class="bg-green-700 text-white">
+                                            <th class="p-3 text-left rounded-tl-lg">Aplicación</th>
+                                            <th class="p-3 text-left">Espacio vectorial</th>
+                                            <th class="p-3 text-left rounded-tr-lg">Operación</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="bg-green-50 border-b border-green-200"><td class="p-3">🤖 Machine Learning</td><td class="p-3 font-mono text-xs">ℝⁿ (datos como n-tuplas)</td><td class="p-3 text-xs">Clasificar, regresión, clusterización</td></tr>
+                                        <tr class="bg-white border-b border-green-200"><td class="p-3">🖼️ Compresión de imágenes</td><td class="p-3 font-mono text-xs">ℝ^(M×N) (matrices de píxeles)</td><td class="p-3 text-xs">Proyección sobre subespacios (JPEG, SVD)</td></tr>
+                                        <tr class="bg-green-50 border-b border-green-200"><td class="p-3">🧠 Redes neuronales</td><td class="p-3 font-mono text-xs">Espacios de matrices de pesos</td><td class="p-3 text-xs">Propagación: multiplicaciones en EV</td></tr>
+                                        <tr class="bg-white border-b border-green-200"><td class="p-3">🔊 Procesamiento de señales</td><td class="p-3 font-mono text-xs">Espacios de funciones continuas</td><td class="p-3 text-xs">Transformada de Fourier, filtros digitales</td></tr>
+                                        <tr class="bg-green-50 border-b border-green-200"><td class="p-3">🕸️ Grafos y redes</td><td class="p-3 font-mono text-xs">ℝⁿ (vectores de características)</td><td class="p-3 text-xs">PageRank, análisis espectral</td></tr>
+                                        <tr class="bg-white"><td class="p-3">🔐 Criptografía</td><td class="p-3 font-mono text-xs">Espacios sobre cuerpos finitos</td><td class="p-3 text-xs">Codificación y decodificación</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- Los 10 axiomas -->
+                        <div>
+                            <h3 class="text-xl font-bold text-green-700 mb-3">📋 Los diez axiomas — el "contrato" del espacio vectorial</h3>
+                            <div class="overflow-x-auto">
+                                <table class="w-full text-sm border-collapse">
+                                    <thead>
+                                        <tr class="bg-green-700 text-white">
+                                            <th class="p-2 rounded-tl-lg">#</th>
+                                            <th class="p-2 text-left">Axioma</th>
+                                            <th class="p-2 text-left font-mono">Expresión</th>
+                                            <th class="p-2 text-left rounded-tr-lg">Significado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="bg-green-50 border-b border-green-200"><td class="p-2 text-center font-bold text-green-700">A1</td><td class="p-2 font-semibold">Cerradura suma</td><td class="p-2 font-mono text-xs">u+v ∈ V</td><td class="p-2 text-xs">La suma de dos vectores sigue en V</td></tr>
+                                        <tr class="bg-white border-b border-green-200"><td class="p-2 text-center font-bold text-green-700">A2</td><td class="p-2 font-semibold">Conmutatividad</td><td class="p-2 font-mono text-xs">u+v = v+u</td><td class="p-2 text-xs">El orden de la suma no importa</td></tr>
+                                        <tr class="bg-green-50 border-b border-green-200"><td class="p-2 text-center font-bold text-green-700">A3</td><td class="p-2 font-semibold">Asociatividad</td><td class="p-2 font-mono text-xs">(u+v)+w = u+(v+w)</td><td class="p-2 text-xs">La agrupación no afecta el resultado</td></tr>
+                                        <tr class="bg-white border-b border-green-200"><td class="p-2 text-center font-bold text-green-700">A4</td><td class="p-2 font-semibold">Neutro aditivo</td><td class="p-2 font-mono text-xs">∃ 0: v+0 = v</td><td class="p-2 text-xs">Existe el vector cero que no altera</td></tr>
+                                        <tr class="bg-green-50 border-b border-green-200"><td class="p-2 text-center font-bold text-green-700">A5</td><td class="p-2 font-semibold">Inverso aditivo</td><td class="p-2 font-mono text-xs">∃ (-v): v+(-v) = 0</td><td class="p-2 text-xs">Cada vector tiene un "opuesto"</td></tr>
+                                        <tr class="bg-white border-b border-green-200"><td class="p-2 text-center font-bold text-blue-700">A6</td><td class="p-2 font-semibold">Cerradura escalar</td><td class="p-2 font-mono text-xs">c·v ∈ V</td><td class="p-2 text-xs">Escalar × vector sigue en V</td></tr>
+                                        <tr class="bg-blue-50 border-b border-green-200"><td class="p-2 text-center font-bold text-blue-700">A7</td><td class="p-2 font-semibold">Dist. vectorial</td><td class="p-2 font-mono text-xs">c(u+v) = cu+cv</td><td class="p-2 text-xs">El escalar distribuye sobre la suma</td></tr>
+                                        <tr class="bg-white border-b border-green-200"><td class="p-2 text-center font-bold text-blue-700">A8</td><td class="p-2 font-semibold">Dist. escalar</td><td class="p-2 font-mono text-xs">(c+d)v = cv+dv</td><td class="p-2 text-xs">La suma de escalares distribuye</td></tr>
+                                        <tr class="bg-blue-50 border-b border-green-200"><td class="p-2 text-center font-bold text-blue-700">A9</td><td class="p-2 font-semibold">Asoc. escalar</td><td class="p-2 font-mono text-xs">c(dv) = (cd)v</td><td class="p-2 text-xs">Escalares en cadena = producto primero</td></tr>
+                                        <tr class="bg-white"><td class="p-2 text-center font-bold text-blue-700">A10</td><td class="p-2 font-semibold">Identidad escalar</td><td class="p-2 font-mono text-xs">1·v = v</td><td class="p-2 text-xs">Multiplicar por 1 no cambia el vector</td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="mt-4 p-4 bg-yellow-50 border-l-4 border-yellow-400 rounded-r-lg">
+                                <p class="text-yellow-800 text-sm">💡 <strong>Truco:</strong> Los axiomas que más frecuentemente fallan son <strong>A1/A6</strong> (cerradura) cuando hay restricciones como "x≥0", y <strong>A5</strong> (inverso) cuando el conjunto no incluye negativos. <strong>Basta con que falle uno para que NO sea espacio vectorial.</strong></p>
+                            </div>
+                        </div>
+
+                        <!-- Ejemplos -->
+                        <div class="space-y-5">
+                            <h3 class="text-xl font-bold text-green-700">📌 Ejemplos de espacios vectoriales</h3>
+
+                            <div class="bg-blue-50 border-l-4 border-blue-500 rounded-r-lg p-5">
+                                <h4 class="font-bold text-blue-800 mb-3">Ejemplo 1 — ℝ² como espacio vectorial ✅</h4>
+                                <p class="text-sm mb-2">ℝ² = {(x,y) | x,y ∈ ℝ} con suma y escalar usuales.</p>
+                                <div class="space-y-1 text-sm font-mono bg-white rounded p-3 border border-blue-200">
+                                    <p>A1: (x₁,y₁)+(x₂,y₂) = (x₁+x₂, y₁+y₂) ∈ ℝ²  ✓</p>
+                                    <p>A4: neutro = (0,0). (x,y)+(0,0) = (x,y)  ✓</p>
+                                    <p>A5: inverso de (x,y) es (-x,-y). (x,y)+(-x,-y) = (0,0)  ✓</p>
+                                    <p>A6: c·(x,y) = (cx,cy) ∈ ℝ²  ✓</p>
+                                </div>
+                                <div class="mt-2 bg-green-100 rounded p-2 text-green-800 text-sm font-semibold">✅ ℝ² ES un espacio vectorial. Todos los axiomas se cumplen.</div>
+                            </div>
+
+                            <div class="bg-purple-50 border-l-4 border-purple-500 rounded-r-lg p-5">
+                                <h4 class="font-bold text-purple-800 mb-3">Ejemplo 2 — P₂(ℝ): polinomios de grado ≤ 2 ✅</h4>
+                                <p class="text-sm mb-2">P₂(ℝ) = {a₀ + a₁x + a₂x² | a₀,a₁,a₂ ∈ ℝ}</p>
+                                <div class="space-y-1 text-sm font-mono bg-white rounded p-3 border border-purple-200">
+                                    <p>Suma: (a₀+a₁x+a₂x²)+(b₀+b₁x+b₂x²) = (a₀+b₀)+(a₁+b₁)x+(a₂+b₂)x² ∈ P₂  ✓</p>
+                                    <p>Escalar: c·(a₀+a₁x+a₂x²) = ca₀+ca₁x+ca₂x² ∈ P₂  ✓</p>
+                                    <p>Neutro: polinomio 0 (todos coeficientes = 0)  ✓</p>
+                                </div>
+                                <div class="mt-2 bg-green-100 rounded p-2 text-green-800 text-sm font-semibold">✅ P₂(ℝ) ES un espacio vectorial. Dimensión = 3.</div>
+                            </div>
+
+                            <div class="bg-red-50 border-l-4 border-red-500 rounded-r-lg p-5">
+                                <h4 class="font-bold text-red-800 mb-3">Ejemplo 3 — Primer cuadrante: NO es EV ❌</h4>
+                                <p class="text-sm mb-2">V = {(x,y) ∈ ℝ² | x ≥ 0, y ≥ 0} con operaciones usuales.</p>
+                                <div class="text-sm bg-white rounded p-3 border border-red-200">
+                                    <p>Tomamos v = (2,3) ∈ V. El inverso debería ser (-2,-3)...</p>
+                                    <p class="mt-1 font-mono">(-2,-3) ∉ V ← coordenadas negativas</p>
+                                </div>
+                                <div class="mt-2 bg-red-100 rounded p-2 text-red-800 text-sm font-semibold">❌ Falla A5 (inverso aditivo). NO es espacio vectorial.</div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+
+                    <!-- Pestaña: Subespacios Vectoriales -->
+                    <div id="subespacios" class="tab-pane hidden">
+                    <div class="space-y-8 text-slate-700 leading-relaxed">
+
+                        <!-- Definición -->
+                        <div class="bg-green-50 border-l-4 border-green-500 rounded-r-xl p-5 shadow">
+                            <p class="text-green-900 font-bold mb-2 text-lg">📖 Definición — Subespacio Vectorial</p>
+                            <p>Sea V un espacio vectorial. Un subconjunto <strong>no vacío W ⊆ V</strong> es un <strong>subespacio vectorial</strong> de V si W, con las mismas operaciones de V, también es un espacio vectorial.</p>
+                            <p class="mt-3 font-semibold text-green-800">Criterio práctico (3 condiciones):</p>
+                            <div class="mt-2 space-y-2">
+                                <div class="flex items-center gap-3 bg-white rounded-lg p-3 border border-green-200">
+                                    <span class="bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold flex-shrink-0">C1</span>
+                                    <span><strong>0 ∈ W</strong> — El vector cero de V pertenece a W</span>
+                                </div>
+                                <div class="flex items-center gap-3 bg-white rounded-lg p-3 border border-green-200">
+                                    <span class="bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold flex-shrink-0">C2</span>
+                                    <span><strong>u, v ∈ W ⟹ u+v ∈ W</strong> — Cerrado bajo la suma</span>
+                                </div>
+                                <div class="flex items-center gap-3 bg-white rounded-lg p-3 border border-green-200">
+                                    <span class="bg-green-600 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold flex-shrink-0">C3</span>
+                                    <span><strong>v ∈ W, c ∈ ℝ ⟹ c·v ∈ W</strong> — Cerrado bajo escalar</span>
+                                </div>
+                            </div>
+                            <div class="mt-3 p-3 bg-yellow-50 border border-yellow-300 rounded-lg text-sm text-yellow-800">
+                                ⚡ <strong>Ventaja:</strong> Si C1, C2 y C3 se cumplen, los otros 7 axiomas se heredan automáticamente de V. ¡No hay que verificarlos!
+                            </div>
+                        </div>
+
+                        <!-- Por qué importantes -->
+                        <div>
+                            <h3 class="text-xl font-bold text-green-700 mb-4">💡 ¿Por qué son importantes los subespacios?</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                <div class="bg-white p-4 rounded-lg border-l-4 border-blue-500 shadow-sm">
+                                    <p class="font-bold text-blue-700 mb-1">🎯 Simplifican problemas</p>
+                                    <p class="text-sm">Muchos problemas se resuelven proyectando sobre un subespacio de dimensión menor (compresión, aproximación, filtrado).</p>
+                                </div>
+                                <div class="bg-white p-4 rounded-lg border-l-4 border-purple-500 shadow-sm">
+                                    <p class="font-bold text-purple-700 mb-1">📐 Describen soluciones</p>
+                                    <p class="text-sm">Las soluciones de Ax=0 forman siempre un subespacio — el <strong>espacio nulo o kernel</strong>.</p>
+                                </div>
+                                <div class="bg-white p-4 rounded-lg border-l-4 border-orange-500 shadow-sm">
+                                    <p class="font-bold text-orange-700 mb-1">🏗️ Fundamento de bases</p>
+                                    <p class="text-sm">Los conceptos de base y dimensión (Guía 3) se aplican directamente a subespacios.</p>
+                                </div>
+                                <div class="bg-white p-4 rounded-lg border-l-4 border-green-500 shadow-sm">
+                                    <p class="font-bold text-green-700 mb-1">🔄 Transformaciones lineales</p>
+                                    <p class="text-sm">La imagen y el núcleo de cualquier transformación lineal son subespacios.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tipos de subespacios SVG -->
+                        <div>
+                            <h3 class="text-xl font-bold text-green-700 mb-3">📊 Los tres tipos de subespacios en ℝ²</h3>
+                            <div class="overflow-x-auto">
+                                <svg viewBox="0 0 620 200" xmlns="http://www.w3.org/2000/svg" class="w-full max-w-2xl mx-auto block" style="min-width:300px">
+                                    <!-- Trivial -->
+                                    <rect x="10" y="10" width="170" height="180" rx="10" fill="#f0fdf4" stroke="#22c55e" stroke-width="1.5"/>
+                                    <text x="95" y="30" text-anchor="middle" font-family="Poppins,sans-serif" font-size="11" font-weight="700" fill="#166534">Trivial: {0}</text>
+                                    <line x1="30" y1="100" x2="170" y2="100" stroke="#94a3b8" stroke-width="1"/>
+                                    <line x1="100" y1="25" x2="100" y2="185" stroke="#94a3b8" stroke-width="1"/>
+                                    <circle cx="100" cy="100" r="6" fill="#166534"/>
+                                    <text x="95" y="165" text-anchor="middle" font-family="Poppins,sans-serif" font-size="10" fill="#64748b">Solo el origen</text>
+
+                                    <!-- Propio -->
+                                    <rect x="225" y="10" width="170" height="180" rx="10" fill="#f0fdf4" stroke="#22c55e" stroke-width="1.5"/>
+                                    <text x="310" y="30" text-anchor="middle" font-family="Poppins,sans-serif" font-size="11" font-weight="700" fill="#166534">Propio: recta</text>
+                                    <line x1="245" y1="100" x2="385" y2="100" stroke="#94a3b8" stroke-width="1"/>
+                                    <line x1="315" y1="25" x2="315" y2="185" stroke="#94a3b8" stroke-width="1"/>
+                                    <line x1="245" y1="155" x2="385" y2="45" stroke="#16a34a" stroke-width="2.5"/>
+                                    <circle cx="315" cy="100" r="4" fill="#166534"/>
+                                    <text x="310" y="185" text-anchor="middle" font-family="Poppins,sans-serif" font-size="10" fill="#64748b">Recta por el origen</text>
+
+                                    <!-- Impropio -->
+                                    <rect x="440" y="10" width="170" height="180" rx="10" fill="#dcfce7" stroke="#22c55e" stroke-width="2"/>
+                                    <text x="525" y="30" text-anchor="middle" font-family="Poppins,sans-serif" font-size="11" font-weight="700" fill="#166534">Impropio: ℝ²</text>
+                                    <rect x="460" y="40" width="130" height="120" fill="#bbf7d0" rx="4" opacity="0.7"/>
+                                    <line x1="460" y1="100" x2="590" y2="100" stroke="#166534" stroke-width="1"/>
+                                    <line x1="525" y1="40" x2="525" y2="160" stroke="#166534" stroke-width="1"/>
+                                    <text x="525" y="185" text-anchor="middle" font-family="Poppins,sans-serif" font-size="10" fill="#64748b">Todo el espacio ℝ²</text>
+                                </svg>
+                            </div>
+                        </div>
+
+                        <!-- Ejemplos paso a paso -->
+                        <div class="space-y-5">
+                            <h3 class="text-xl font-bold text-green-700">📌 Ejemplos paso a paso</h3>
+
+                            <div class="bg-green-50 border-l-4 border-green-500 rounded-r-lg p-5">
+                                <h4 class="font-bold text-green-800 mb-3">Ejemplo 4 — El plano z=0 en ℝ³ ✅</h4>
+                                <p class="text-sm mb-3">W = {(x,y,0) | x,y ∈ ℝ} en V = ℝ³</p>
+                                <div class="space-y-2 text-sm">
+                                    <div class="flex items-start gap-2 bg-white rounded p-2 border border-green-200">
+                                        <span class="bg-green-600 text-white rounded px-2 py-0.5 text-xs font-bold flex-shrink-0">C1</span>
+                                        <span>(0,0,0) tiene z=0 → (0,0,0) ∈ W ✓</span>
+                                    </div>
+                                    <div class="flex items-start gap-2 bg-white rounded p-2 border border-green-200">
+                                        <span class="bg-green-600 text-white rounded px-2 py-0.5 text-xs font-bold flex-shrink-0">C2</span>
+                                        <span>(x₁,y₁,0)+(x₂,y₂,0) = (x₁+x₂, y₁+y₂, 0) ∈ W ✓</span>
+                                    </div>
+                                    <div class="flex items-start gap-2 bg-white rounded p-2 border border-green-200">
+                                        <span class="bg-green-600 text-white rounded px-2 py-0.5 text-xs font-bold flex-shrink-0">C3</span>
+                                        <span>c·(x,y,0) = (cx, cy, 0) ∈ W ✓</span>
+                                    </div>
+                                </div>
+                                <div class="mt-3 bg-green-100 rounded p-2 text-green-800 text-sm font-semibold">✅ Es subespacio. Corresponde a un plano por el origen.</div>
+                            </div>
+
+                            <div class="bg-blue-50 border-l-4 border-blue-500 rounded-r-lg p-5">
+                                <h4 class="font-bold text-blue-800 mb-3">Ejemplo 5 — Espacio nulo de Ax=0 ✅</h4>
+                                <p class="text-sm mb-2">A = [[1,2],[2,4]], W = {x ∈ ℝ² | Ax=0}</p>
+                                <p class="text-sm mb-2">Las soluciones son (x₁,x₂) = t(-2,1) para t ∈ ℝ</p>
+                                <div class="space-y-1 text-sm font-mono bg-white rounded p-3 border border-blue-200">
+                                    <p>C1: t=0 → (0,0) ∈ W  ✓</p>
+                                    <p>C2: t₁(-2,1)+t₂(-2,1) = (t₁+t₂)(-2,1) ∈ W  ✓</p>
+                                    <p>C3: c·t(-2,1) = ct(-2,1) ∈ W  ✓</p>
+                                </div>
+                                <div class="mt-2 bg-blue-100 rounded p-2 text-blue-800 text-sm font-semibold">✅ Las soluciones de Ax=0 siempre forman un subespacio (kernel).</div>
+                            </div>
+
+                            <div class="bg-red-50 border-l-4 border-red-500 rounded-r-lg p-5">
+                                <h4 class="font-bold text-red-800 mb-3">Ejemplo 6 — Circunferencia: NO es subespacio ❌</h4>
+                                <p class="text-sm mb-2">W = {(x,y) | x²+y²=1} en V = ℝ²</p>
+                                <div class="text-sm bg-white rounded p-3 border border-red-200">
+                                    <p>C1: ¿Está (0,0)? → 0²+0² = 0 ≠ 1 → NO está</p>
+                                </div>
+                                <div class="mt-2 bg-red-100 rounded p-2 text-red-800 text-sm font-semibold">❌ Falla C1 inmediatamente. No necesitamos seguir verificando.</div>
+                            </div>
+
+                            <div class="bg-purple-50 border-l-4 border-purple-500 rounded-r-lg p-5">
+                                <h4 class="font-bold text-purple-800 mb-3">Ejemplo 7 — Matrices simétricas ✅</h4>
+                                <p class="text-sm mb-2">W = {A ∈ M₂ₓ₂ | Aᵀ=A} en V = M₂ₓ₂(ℝ)</p>
+                                <div class="space-y-1 text-sm bg-white rounded p-3 border border-purple-200">
+                                    <p>C1: 0ᵀ = 0 ∈ W  ✓</p>
+                                    <p>C2: (A+B)ᵀ = Aᵀ+Bᵀ = A+B → simétrica  ✓</p>
+                                    <p>C3: (cA)ᵀ = c·Aᵀ = cA → simétrica  ✓</p>
+                                </div>
+                                <div class="mt-2 bg-purple-100 rounded p-2 text-purple-800 text-sm font-semibold">✅ Es subespacio. Dimensión = 3 (formas libres: a, b, c en [[a,b],[b,c]]).</div>
+                            </div>
+                        </div>
+
+                        <!-- Teoremas -->
+                        <div class="space-y-4">
+                            <h3 class="text-xl font-bold text-green-700">⚡ Propiedades importantes</h3>
+                            <div class="bg-yellow-50 border-l-4 border-yellow-500 rounded-r-lg p-5">
+                                <h4 class="font-bold text-yellow-800 mb-2">Teorema 1 — La intersección de subespacios ES subespacio</h4>
+                                <p class="text-sm">Si W₁ y W₂ son subespacios de V, entonces <strong>W₁ ∩ W₂ también es subespacio</strong>.</p>
+                            </div>
+                            <div class="bg-red-50 border-l-4 border-red-400 rounded-r-lg p-5">
+                                <h4 class="font-bold text-red-700 mb-2">⚠️ Atención — La unión generalmente NO es subespacio</h4>
+                                <p class="text-sm mb-2">En ℝ², el eje x W₁={(x,0)} y el eje y W₂={(0,y)} son subespacios, pero:</p>
+                                <p class="text-sm font-mono bg-white rounded p-2 border border-red-200">(1,0) ∈ W₁ y (0,1) ∈ W₂, pero su suma (1,1) ∉ W₁∪W₂</p>
+                                <p class="text-sm mt-2">→ Falla C2. La unión NO es subespacio.</p>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ════════════════════════════════════════════ -->
+        <!--  ACTIVIDADES                                -->
+        <!-- ════════════════════════════════════════════ -->
+        <div id="actividades" class="content-pane">
+            <h2 class="text-2xl sm:text-3xl font-bold text-green-800 mb-6">Actividades prácticas</h2>
+
+            <!-- Actividad 1: Emparejamiento de axiomas -->
+            <div class="bg-white border-l-4 border-green-500 rounded-lg shadow-sm p-6 mb-8">
+                <h3 class="text-xl font-bold text-green-700 mb-2">Actividad 1. Empareja los axiomas</h3>
+                <p class="text-slate-600 mb-6">Haz clic en un axioma (columna izquierda) y luego en su descripción correcta (columna derecha).</p>
+                <div class="flex flex-col lg:flex-row gap-8 mb-4">
+                    <!-- Axiomas -->
+                    <div class="flex-1">
+                        <h4 class="font-bold text-green-800 mb-4 text-center">Axiomas</h4>
+                        <div id="concepts-container" class="space-y-3">
+                            <div class="concept-item bg-gradient-to-r from-green-100 to-green-200 p-4 rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-all border-2 border-transparent" data-concept="a1">
+                                <div class="flex items-center justify-between"><span class="font-bold text-green-800">A1 — Cerradura suma</span><span class="hint-text text-xs bg-green-300 px-2 py-1 rounded">Clic</span></div>
+                            </div>
+                            <div class="concept-item bg-gradient-to-r from-green-100 to-green-200 p-4 rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-all border-2 border-transparent" data-concept="a4">
+                                <div class="flex items-center justify-between"><span class="font-bold text-green-800">A4 — Neutro aditivo</span><span class="hint-text text-xs bg-green-300 px-2 py-1 rounded">Clic</span></div>
+                            </div>
+                            <div class="concept-item bg-gradient-to-r from-green-100 to-green-200 p-4 rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-all border-2 border-transparent" data-concept="a5">
+                                <div class="flex items-center justify-between"><span class="font-bold text-green-800">A5 — Inverso aditivo</span><span class="hint-text text-xs bg-green-300 px-2 py-1 rounded">Clic</span></div>
+                            </div>
+                            <div class="concept-item bg-gradient-to-r from-green-100 to-green-200 p-4 rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-all border-2 border-transparent" data-concept="a6">
+                                <div class="flex items-center justify-between"><span class="font-bold text-green-800">A6 — Cerradura escalar</span><span class="hint-text text-xs bg-green-300 px-2 py-1 rounded">Clic</span></div>
+                            </div>
+                            <div class="concept-item bg-gradient-to-r from-green-100 to-green-200 p-4 rounded-lg shadow-md cursor-pointer hover:shadow-lg transition-all border-2 border-transparent" data-concept="a10">
+                                <div class="flex items-center justify-between"><span class="font-bold text-green-800">A10 — Identidad escalar</span><span class="hint-text text-xs bg-green-300 px-2 py-1 rounded">Clic</span></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Definiciones -->
+                    <div class="flex-1">
+                        <h4 class="font-bold text-green-800 mb-4 text-center">Descripción</h4>
+                        <div id="definitions-container" class="space-y-3">
+                            <div class="definition-item bg-gray-50 p-4 rounded-lg shadow-md border-2 border-dashed border-gray-300 cursor-pointer hover:bg-gray-100 transition-all min-h-[64px] flex items-center" data-definition="a5">
+                                <div class="w-full"><p class="text-slate-700 text-sm">Cada vector v tiene un opuesto (-v) tal que v+(-v) = 0.</p><div class="matched-concept mt-1 hidden text-green-700 font-semibold text-sm"></div></div>
+                            </div>
+                            <div class="definition-item bg-gray-50 p-4 rounded-lg shadow-md border-2 border-dashed border-gray-300 cursor-pointer hover:bg-gray-100 transition-all min-h-[64px] flex items-center" data-definition="a1">
+                                <div class="w-full"><p class="text-slate-700 text-sm">Si sumas dos vectores del espacio, el resultado siempre pertenece al mismo espacio (u+v ∈ V).</p><div class="matched-concept mt-1 hidden text-green-700 font-semibold text-sm"></div></div>
+                            </div>
+                            <div class="definition-item bg-gray-50 p-4 rounded-lg shadow-md border-2 border-dashed border-gray-300 cursor-pointer hover:bg-gray-100 transition-all min-h-[64px] flex items-center" data-definition="a10">
+                                <div class="w-full"><p class="text-slate-700 text-sm">Multiplicar cualquier vector por el escalar 1 no lo cambia: 1·v = v.</p><div class="matched-concept mt-1 hidden text-green-700 font-semibold text-sm"></div></div>
+                            </div>
+                            <div class="definition-item bg-gray-50 p-4 rounded-lg shadow-md border-2 border-dashed border-gray-300 cursor-pointer hover:bg-gray-100 transition-all min-h-[64px] flex items-center" data-definition="a4">
+                                <div class="w-full"><p class="text-slate-700 text-sm">Existe un vector cero (0) tal que v+0 = v para cualquier vector v.</p><div class="matched-concept mt-1 hidden text-green-700 font-semibold text-sm"></div></div>
+                            </div>
+                            <div class="definition-item bg-gray-50 p-4 rounded-lg shadow-md border-2 border-dashed border-gray-300 cursor-pointer hover:bg-gray-100 transition-all min-h-[64px] flex items-center" data-definition="a6">
+                                <div class="w-full"><p class="text-slate-700 text-sm">Multiplicar un vector por cualquier escalar real da otro vector que también pertenece a V (c·v ∈ V).</p><div class="matched-concept mt-1 hidden text-green-700 font-semibold text-sm"></div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="p-3 bg-green-50 border border-green-200 rounded-lg mb-4">
+                    <p class="text-sm text-green-800"><strong>💡 Instrucciones:</strong> Haz clic en un axioma y luego en su descripción para emparejarlos.</p>
+                </div>
+                <div class="flex gap-4">
+                    <button id="check-matching-btn" class="bg-green-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-green-700 transition-colors">Verificar</button>
+                    <button id="reset-matching-btn" class="bg-gray-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-gray-600 transition-colors">Reiniciar</button>
+                </div>
+                <div id="matching-result" class="mt-4 font-medium"></div>
+            </div>
+
+            <!-- Actividad 2: Verdadero o Falso -->
+            <div class="bg-white border-l-4 border-green-500 rounded-lg shadow-sm p-6 mb-8">
+                <h3 class="text-xl font-bold text-green-700 mb-2">Actividad 2. Verdadero (V) o Falso (F)</h3>
+                <p class="text-slate-600 mb-6">Escribe <strong>V</strong> o <strong>F</strong> en cada casilla:</p>
+                <div class="space-y-4">
+                    <div class="flex items-start gap-4 p-3 bg-green-50 rounded-lg border border-green-200">
+                        <input type="text" id="vf1" maxlength="1" placeholder="?" class="vf-input w-12 h-12 text-center border-2 border-green-300 rounded-lg font-bold text-lg bg-white uppercase flex-shrink-0">
+                        <p class="text-slate-700 pt-2">El conjunto ℝ² con las operaciones usuales es un espacio vectorial.</p>
+                    </div>
+                    <div class="flex items-start gap-4 p-3 bg-green-50 rounded-lg border border-green-200">
+                        <input type="text" id="vf2" maxlength="1" placeholder="?" class="vf-input w-12 h-12 text-center border-2 border-green-300 rounded-lg font-bold text-lg bg-white uppercase flex-shrink-0">
+                        <p class="text-slate-700 pt-2">El conjunto {(x,y) ∈ ℝ² | y = 2x+1} con operaciones usuales es un espacio vectorial.</p>
+                    </div>
+                    <div class="flex items-start gap-4 p-3 bg-green-50 rounded-lg border border-green-200">
+                        <input type="text" id="vf3" maxlength="1" placeholder="?" class="vf-input w-12 h-12 text-center border-2 border-green-300 rounded-lg font-bold text-lg bg-white uppercase flex-shrink-0">
+                        <p class="text-slate-700 pt-2">Las soluciones de Ax=0 siempre forman un subespacio vectorial de ℝⁿ.</p>
+                    </div>
+                    <div class="flex items-start gap-4 p-3 bg-green-50 rounded-lg border border-green-200">
+                        <input type="text" id="vf4" maxlength="1" placeholder="?" class="vf-input w-12 h-12 text-center border-2 border-green-300 rounded-lg font-bold text-lg bg-white uppercase flex-shrink-0">
+                        <p class="text-slate-700 pt-2">La unión de dos subespacios de V siempre es un subespacio de V.</p>
+                    </div>
+                    <div class="flex items-start gap-4 p-3 bg-green-50 rounded-lg border border-green-200">
+                        <input type="text" id="vf5" maxlength="1" placeholder="?" class="vf-input w-12 h-12 text-center border-2 border-green-300 rounded-lg font-bold text-lg bg-white uppercase flex-shrink-0">
+                        <p class="text-slate-700 pt-2">La intersección de dos subespacios de V siempre es un subespacio de V.</p>
+                    </div>
+                    <div class="flex items-start gap-4 p-3 bg-green-50 rounded-lg border border-green-200">
+                        <input type="text" id="vf6" maxlength="1" placeholder="?" class="vf-input w-12 h-12 text-center border-2 border-green-300 rounded-lg font-bold text-lg bg-white uppercase flex-shrink-0">
+                        <p class="text-slate-700 pt-2">Para verificar que W es subespacio, basta con comprobar las tres condiciones C1, C2 y C3 (sin verificar los 10 axiomas).</p>
+                    </div>
+                    <div class="flex items-start gap-4 p-3 bg-green-50 rounded-lg border border-green-200">
+                        <input type="text" id="vf7" maxlength="1" placeholder="?" class="vf-input w-12 h-12 text-center border-2 border-green-300 rounded-lg font-bold text-lg bg-white uppercase flex-shrink-0">
+                        <p class="text-slate-700 pt-2">El primer cuadrante {(x,y) | x≥0, y≥0} es un subespacio de ℝ².</p>
+                    </div>
+                </div>
+                <div class="flex gap-4 mt-6">
+                    <button id="check-vf-btn" class="bg-green-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-green-700 transition-colors">Verificar</button>
+                    <button id="reset-vf-btn" class="bg-gray-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-gray-600 transition-colors">Reiniciar</button>
+                </div>
+                <div id="vf-result" class="mt-4 font-medium"></div>
+            </div>
+
+            <!-- Actividad 3: Verificador de subespacios -->
+            <div class="bg-white border-l-4 border-green-500 rounded-lg shadow-sm p-6 mb-8">
+                <h3 class="text-xl font-bold text-green-700 mb-2">Actividad 3. ¿Es subespacio?</h3>
+                <p class="text-slate-600 mb-6">Para cada conjunto, decide si es o no subespacio de ℝ³ y obtén retroalimentación inmediata:</p>
+                <div class="space-y-6">
+                    <!-- Caso 1 -->
+                    <div class="p-5 bg-green-50 rounded-xl border border-green-200">
+                        <p class="font-bold text-green-800 mb-1">Conjunto 1:</p>
+                        <p class="font-mono text-sm bg-white rounded p-2 border border-green-200 mb-3">W = {(x, y, z) ∈ ℝ³ | 2x − y + z = 0}</p>
+                        <div class="flex gap-4 mb-3">
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="s1" value="si" class="accent-green-600"> <span class="font-semibold text-green-700">Sí es subespacio</span></label>
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="s1" value="no" class="accent-red-600"> <span class="font-semibold text-red-700">No es subespacio</span></label>
+                        </div>
+                        <button class="check-sub-btn bg-green-600 text-white font-bold py-1.5 px-5 rounded-lg hover:bg-green-700 transition-colors text-sm" data-sub="s1">Verificar</button>
+                        <div id="fb-s1" class="hidden mt-2"></div>
+                    </div>
+                    <!-- Caso 2 -->
+                    <div class="p-5 bg-green-50 rounded-xl border border-green-200">
+                        <p class="font-bold text-green-800 mb-1">Conjunto 2:</p>
+                        <p class="font-mono text-sm bg-white rounded p-2 border border-green-200 mb-3">W = {(x, y, z) ∈ ℝ³ | x + y = 1}</p>
+                        <div class="flex gap-4 mb-3">
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="s2" value="si" class="accent-green-600"> <span class="font-semibold text-green-700">Sí es subespacio</span></label>
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="s2" value="no" class="accent-red-600"> <span class="font-semibold text-red-700">No es subespacio</span></label>
+                        </div>
+                        <button class="check-sub-btn bg-green-600 text-white font-bold py-1.5 px-5 rounded-lg hover:bg-green-700 transition-colors text-sm" data-sub="s2">Verificar</button>
+                        <div id="fb-s2" class="hidden mt-2"></div>
+                    </div>
+                    <!-- Caso 3 -->
+                    <div class="p-5 bg-green-50 rounded-xl border border-green-200">
+                        <p class="font-bold text-green-800 mb-1">Conjunto 3:</p>
+                        <p class="font-mono text-sm bg-white rounded p-2 border border-green-200 mb-3">W = {(x, y, z) ∈ ℝ³ | x = 0 o y = 0}</p>
+                        <div class="flex gap-4 mb-3">
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="s3" value="si" class="accent-green-600"> <span class="font-semibold text-green-700">Sí es subespacio</span></label>
+                            <label class="flex items-center gap-2 cursor-pointer"><input type="radio" name="s3" value="no" class="accent-red-600"> <span class="font-semibold text-red-700">No es subespacio</span></label>
+                        </div>
+                        <button class="check-sub-btn bg-green-600 text-white font-bold py-1.5 px-5 rounded-lg hover:bg-green-700 transition-colors text-sm" data-sub="s3">Verificar</button>
+                        <div id="fb-s3" class="hidden mt-2"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Actividad 4: Preguntas de análisis -->
+            <div class="bg-white border-l-4 border-green-500 rounded-lg shadow-sm p-6">
+                <h3 class="text-xl font-bold text-green-700 mb-2">Actividad 4. Construcción y análisis</h3>
+                <p class="text-slate-600 mb-5">Desarrolle las siguientes preguntas de análisis y documente sus procedimientos y resultados.</p>
+                <div class="space-y-4">
+                    <div class="p-4 bg-green-50 rounded-lg border border-green-200">
+                        <p class="font-bold text-green-800 mb-1">1.</p>
+                        <p class="text-slate-700">Sea V = ℝ³. Encuentra un subespacio W de dimensión 1 (una recta por el origen) y demuestra que es subespacio verificando C1, C2 y C3.</p>
+                    </div>
+                    <div class="p-4 bg-green-50 rounded-lg border border-green-200">
+                        <p class="font-bold text-green-800 mb-1">2.</p>
+                        <p class="text-slate-700">Encuentra dos subespacios W₁ y W₂ de ℝ³ de dimensión 2 (planos por el origen) tales que W₁ ∩ W₂ sea una recta. ¿Cuál es esa recta?</p>
+                    </div>
+                    <div class="p-4 bg-green-50 rounded-lg border border-green-200">
+                        <p class="font-bold text-green-800 mb-1">3.</p>
+                        <p class="text-slate-700">¿Por qué el conjunto {(x,y) | y = 2x} sí es subespacio de ℝ², pero {(x,y) | y = 2x+1} no lo es? Explica usando las tres condiciones.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!-- ════════════════════════════════════════════ -->
+        <!--  EVALUACIÓN                                 -->
+        <!-- ════════════════════════════════════════════ -->
+        <div id="evaluacion" class="content-pane">
+            <h2 class="text-2xl sm:text-3xl font-bold text-green-800 mb-6">Evaluación. Selección múltiple (marca la respuesta correcta)</h2>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                <p class="text-slate-600 mb-6">Comprueba lo que has aprendido. Selecciona la respuesta correcta para cada pregunta.</p>
+                <div id="quiz-container"></div>
+                <div class="flex gap-4 mt-6 flex-wrap">
+                    <button id="submit-quiz-btn" class="bg-green-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-green-700 transition-colors">Finalizar evaluación</button>
+                    <button id="reset-quiz-btn" class="bg-gray-500 text-white font-bold py-2 px-6 rounded-lg hover:bg-gray-600 transition-colors hidden">🔄 Reiniciar evaluación</button>
+                </div>
+                <div id="quiz-result" class="mt-4 text-lg font-bold"></div>
+            </div>
+        </div>
+
+<!-- ════════════════════════════════════════════ -->
+<!--  RECURSOS                                   -->
+<!-- ════════════════════════════════════════════ -->
+<div id="recursos" class="content-pane">
+    <h2 class="text-2xl sm:text-3xl font-bold text-green-800 mb-6">Recursos para profundizar</h2>
+    <p class="text-slate-700 leading-relaxed mb-6">
+        Para ampliar tu conocimiento sobre espacios y subespacios vectoriales, te recomendamos explorar los siguientes recursos:
+    </p>
+
+    <ul class="space-y-4">
+        <li class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow border-l-4 border-green-500 flex flex-col sm:flex-row sm:items-center justify-between">
+            <div>
+                <h3 class="font-bold text-green-700">Anexo 1. Video espacios y subespacios vectoriales ➤ Conceptos clave</h3>
+                <p class="text-sm text-slate-500 mb-1">Recurso audiovisual para comprender los conceptos fundamentales de espacios y subespacios vectoriales.</p>
+                <a href="https://www.youtube.com/watch?v=k7RM-ot2NWY" target="_blank" class="underline text-slate-700 hover:text-green-700">Ir al recurso</a>
+            </div>
+            <div class="mt-4 sm:mt-0 sm:ml-6 flex-shrink-0">
+                <img src="img/QR1.png" alt="QR del recurso 1" class="w-20 h-20 object-contain border border-green-300 rounded bg-green-50 p-1">
+            </div>
+        </li>
+
+        <li class="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-shadow border-l-4 border-green-500 flex flex-col sm:flex-row sm:items-center justify-between">
+            <div>
+                <h3 class="font-bold text-green-700">Anexo 2. Actividad interactiva sobre escalamiento de vectores</h3>
+                <p class="text-sm text-slate-500 mb-1">Simulador interactivo para explorar operaciones y escalamiento de vectores.</p>
+                <a href="https://phet.colorado.edu/es/simulations/vector-addition" target="_blank" class="underline text-slate-700 hover:text-green-700">Ir al recurso</a>
+            </div>
+            <div class="mt-4 sm:mt-0 sm:ml-6 flex-shrink-0">
+                <img src="img/QR2.png" alt="QR del recurso 2" class="w-20 h-20 object-contain border border-green-300 rounded bg-green-50 p-1">
+            </div>
+        </li>
+    </ul>
+</div>
+        <!-- ════════════════════════════════════════════ -->
+        <!--  BIBLIOGRAFÍA                               -->
+        <!-- ════════════════════════════════════════════ -->
+        <div id="bibliografia" class="content-pane">
+            <h2 class="text-2xl sm:text-3xl font-bold text-green-800 mb-6">Bibliografía</h2>
+            <div class="space-y-4">
+                <div class="bg-white p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow border-l-4 border-green-500">
+                    <span class="block text-slate-700">Poole, D. (2004). <em>Álgebra lineal con aplicaciones</em>. International Thomson Editores.</span>
+                </div>
+                <div class="bg-white p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow border-l-4 border-green-500">
+                    <span class="block text-slate-700">Kolman, B., &amp; Hill, D. R. (2006). <em>Álgebra lineal</em> (8.ª ed.). Pearson Prentice Hall.</span>
+                </div>
+                <div class="bg-white p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow border-l-4 border-green-500">
+                    <span class="block text-slate-700">Lay, D. C. (2001). <em>Álgebra lineal y sus aplicaciones</em> (2.ª ed.). Prentice Hall.</span>
+                </div>
+                <div class="bg-white p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow border-l-4 border-green-500">
+                    <span class="block text-slate-700">Nakos, G., &amp; Joyner, D. (1999). <em>Álgebra lineal con aplicaciones</em>. Thomson.</span>
+                </div>
+                <div class="bg-white p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow border-l-4 border-green-500">
+                    <span class="block text-slate-700">Strang, G. (1982). <em>Álgebra lineal y sus aplicaciones</em>. Fondo Educativo Interamericano.</span>
+                </div>
+                <div class="bg-white p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow border-l-4 border-green-500">
+                    <span class="block text-slate-700">Grossman, S. I. (2007). <em>Álgebra lineal</em>. McGraw-Hill.</span>
+                </div>
+                <div class="bg-white p-5 rounded-lg shadow-md hover:shadow-lg transition-shadow border-l-4 border-green-500">
+                    <span class="block text-slate-700">Hefferon, J. (2020). <em>Linear algebra</em>. Saint Michael's College.</span>
+                </div>
+            </div>
+
+           </div>
+
+    <!-- Footer global -->
+    <footer class="mt-12 pt-6 border-t-2 border-slate-200 text-center">
+        <p class="text-slate-600 font-medium">Creado por:</p>
+        <p class="text-green-800 font-bold text-lg">Centro de Innovación en TIC para el apoyo de la Docencia CINTIA</p>
+        <p class="text-slate-500 text-sm">Universidad de Córdoba</p>
+    </footer>
+
+    
+    </main>
+</div>
+
+<!-- Modal imagen -->
+<div id="imageModal" class="image-modal">
+    <div class="modal-content">
+        <img id="modalImage" src="" alt="Imagen ampliada">
+        <button class="close-modal" id="closeModal">&times;</button>
+    </div>
+</div>
+
+<script src="js/speech.js"></script>
+<script src="js/modal.js"></script>
+<script src="js/activities.js"></script>
+<script src="js/quiz.js"></script>
+<script src="js/tabs.js"></script>
+<script src="js/navigation.js"></script>
+</body>
+</html>
